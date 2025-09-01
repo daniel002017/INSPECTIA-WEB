@@ -1,0 +1,24 @@
+# Usar la imagen base oficial de Node.js
+FROM node:18
+
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copiar los archivos del proyecto al contenedor
+COPY package*.json ./
+COPY . .
+
+# Copiar el archivo .env
+COPY .env . 
+
+# Instalar las dependencias
+RUN npm install
+
+# Instalar cors
+RUN npm install cors
+
+# Exponer el puerto (mismo que usas en tu aplicación)
+EXPOSE 3000
+
+# Comando para iniciar la aplicación
+CMD ["node", "index.js"]
